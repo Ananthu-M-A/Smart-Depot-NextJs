@@ -10,13 +10,13 @@ import {
 } from "@/components/ui/select"
 import { Button } from './ui/button'
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
 
   return (
-    <div className='bg-midnight p-4 flex justify-between'>
+    <div className='bg-midnight p-4 flex justify-between fixed w-full z-50'>
       <div className='py-3'>
         <h1 className='text-lightGray text-2xl font-bold opacity-90'>SMART DEPOT</h1>
       </div>

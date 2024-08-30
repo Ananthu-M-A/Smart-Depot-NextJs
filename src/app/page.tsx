@@ -1,9 +1,11 @@
-import { Banner } from "@/components/Banner";
+import Banners from "@/components/Banners";
+import Posters from "@/components/Posters";
 
 export default function Home() {
   return (
-    <div className="">
-      <Banner />
-    </div>
+    <>
+      <Banners />
+      <Posters />
+    </>
   );
 }

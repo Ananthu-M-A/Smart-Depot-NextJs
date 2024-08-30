@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <div className='bg-midnight p-4 flex text-center grid'>
             <h1 className='text-lightGray text-2xl font-bold opacity-90'>SMART DEPOT</h1>

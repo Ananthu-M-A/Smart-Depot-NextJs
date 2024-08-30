@@ -1,6 +1,5 @@
-import carousel1 from "../../public/banner1.jpeg";
-import carousel2 from "../../public/banner2.jpg";
-import carousel3 from "../../public/banner3.jpg";
-import carousel4 from "../../public/search.png";
+import banner1 from "../../public/banner1.jpeg";
+import banner2 from "../../public/banner2.jpg";
+import banner3 from "../../public/banner3.jpg";
 
-export const carouselImages = [carousel1, carousel2, carousel3];
+export const carousel = [banner1, banner2, banner3];

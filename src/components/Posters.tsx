@@ -7,13 +7,13 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { posters } from '@/constants/poster'
+import { posters } from '@/constants/posters'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const Posters: React.FC = () => {
     return (
-        <div className='flex justify-between p-4 gap-4 bg-lightGray'>
+        <div className='flex justify-between pt-4 px-4 gap-4 bg-lightGray'>
             {posters.map((poster, index) => (
                 <Card key={index}>
                     <CardHeader>

@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.relative:hover .hover:block {
+  display: block;
+}

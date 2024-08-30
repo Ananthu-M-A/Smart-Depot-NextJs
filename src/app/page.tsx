@@ -1,5 +1,9 @@
+import { Banner } from "@/components/Banner";
+
 export default function Home() {
   return (
-    <h1>Smart Depot</h1>
+    <div className="">
+      <Banner />
+    </div>
   );
 }

@@ -5,9 +5,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 const Sort = () => {
   const [sortOption, setSortOption] = useState("Featured");
   return (
-    <div className='-my-1'>
+    <div className=''>
       <Select value={sortOption} onValueChange={setSortOption}>
-        <SelectTrigger className="w-25 border border-transparent absolute right-0">
+        <SelectTrigger className="w-25 border border-transparent absolute right-6">
           <SelectValue>
             <div className='flex gap-1 text-gray-900'>
               <img className='w-4 h-4' src="sort.png" alt="sort-icon" />

@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import Image from 'next/image'
-import { productsList } from '@/constants/products'
+import { productsList } from '@/constants/productsList'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 
 const Scrollers: React.FC = () => {

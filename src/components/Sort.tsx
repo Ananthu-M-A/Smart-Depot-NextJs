@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 const Sort = () => {
   const [sortOption, setSortOption] = useState("Featured");
   return (
-    <div className=''>
+    <div>
       <Select value={sortOption} onValueChange={setSortOption}>
         <SelectTrigger className="w-25 border border-transparent absolute right-6">
           <SelectValue>

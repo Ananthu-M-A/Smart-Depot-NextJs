@@ -1,10 +1,11 @@
-import { productsList } from '@/constants/products';
+import { productsList } from '@/constants/productsList';
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import Pagination from './Pagination';
 
-const ProductsList: React.FC = () => {
+const Products: React.FC = () => {
     return (
         <div className='px-5'>
             <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
@@ -40,9 +41,11 @@ const ProductsList: React.FC = () => {
                     </CardContent>
                 </Card>
             ))}
-            
+            <div className='flex justify-center'>
+                <Pagination />
+            </div>
         </div>
     )
 }
 
-export default ProductsList
+export default Products

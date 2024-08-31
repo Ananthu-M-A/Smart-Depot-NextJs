@@ -1,6 +1,7 @@
+import { ProductInterface } from "@/interfaces/ProductInterface"
 import product1 from "../../public/product1.jpg"
 
-export const productsList = [
+export const productsList: ProductInterface[] = [
     {
         productName: "Hot Air Gun",
         brand: "Quick",

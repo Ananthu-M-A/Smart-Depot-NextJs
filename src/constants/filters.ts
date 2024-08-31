@@ -4,10 +4,6 @@ export const brands = [
         id: "Weller",
     },
     {
-        name: "Fluke",
-        id: "Fluke",
-    },
-    {
         name: "Wiha",
         id: "Wiha",
     },

@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from './ui/button'
+import Image from 'next/image'
 
 const Navbar: React.FC = () => {
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
@@ -26,7 +27,7 @@ const Navbar: React.FC = () => {
             <SelectValue>
               <div className='flex gap-1 text-lightGray'>
                 <h1 className='text-md font-bold opacity-90'>{selectedLanguage}</h1>
-                <img className='w-5 h-5' src="language.png" alt="language-icon" />
+                <Image src={'/language.png'} width={25} height={20} alt={'language-icon'} />
               </div>
             </SelectValue>
           </SelectTrigger>
@@ -55,35 +56,35 @@ const Navbar: React.FC = () => {
         </Select>
         <Input placeholder='Search...' />
         <Button className='bg-lightGray hover:bg-gray-300'>
-          <img className='w-5' src="search.png" alt="search-icon" />
+          <Image src={'/search.png'} width={30} height={20} alt="search-icon"/>
         </Button>
       </div>
       <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
-          <p className='text-lightGray font-thin text-xs'>Hello,</p>
-          <img className='w-5 h-5' src="account.png" alt="account-icon" />
+          <p className='text-lightGray font-thin text-xs mt-1'>Hello,</p>
+          <Image src={'/account.png'} width={25} height={20} alt="account-icon"/>
         </div>
         <h1 className='text-lightGray font-semibold text-md'>Ananthu</h1>
       </div>
       <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
-          <p className='text-lightGray font-thin text-xs'>Deliver to Ananthu</p>
-          <img className='w-5 h-5' src="location.png" alt="location-icon" />
+          <p className='text-lightGray font-thin text-xs mt-1'>Deliver to Ananthu</p>
+          <Image src={'/location.png'} width={25} height={10} alt="location-icon"/>
         </div>
-        <h1 className='text-lightGray font-semibold text-sm'>Chemanchery, 673304</h1>
+        <h1 className='text-lightGray font-semibold text-sm mt-1'>Chemanchery, 673304</h1>
       </div>
       <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
-        <p className='text-lightGray font-light text-xs'>Returns &</p>
+        <p className='text-lightGray font-light text-xs mt-1'>Returns &</p>
         <div className='flex gap-1'>
-          <h1 className='text-lightGray font-semibold text-sm'>Orders</h1>
-          <img className='w-5 h-5' src="orders.png" alt="orders-icon" />
+          <h1 className='text-lightGray font-semibold text-sm mt-2'>Orders</h1>
+          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon"/>
         </div>
       </div>
       <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
-        <p className='text-lightGray font-thin text-xs'>Your</p>
+        <p className='text-lightGray font-thin text-xs mt-1'>Your</p>
         <div className='flex gap-1'>
-          <h1 className='text-lightGray font-semibold text-sm'>Cart</h1>
-          <img className='w-5 h-5' src="cart.png" alt="cart-icon" />
+          <h1 className='text-lightGray font-semibold text-sm mt-1'>Cart</h1>
+          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon"/>
         </div>
       </div>
     </div>

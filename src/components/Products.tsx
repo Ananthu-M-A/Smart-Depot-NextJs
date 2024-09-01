@@ -21,21 +21,31 @@ const Products: React.FC = () => {
                     </CardContent>
                     <CardContent className="w-1/2 p-1 border-l">
                         <CardHeader>
-                            <CardTitle className='text-xl cursor-pointer'>{product.productName}</CardTitle>
-                            <CardDescription className='font-bold'>{product.brand}</CardDescription>
+                            <CardDescription className="flex justify-left gap-1">
+                                {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
+                                    <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
+                                        className="hover:border-2 hover:border-transparent cursor-pointer" />
+                                ))}
+                            </CardDescription>
+                            <CardTitle className='text-xl cursor-pointer'>{product.productName}
+                                <CardDescription className='font-bold'>{product.brand}</CardDescription>
+                            </CardTitle>
                         </CardHeader>
-                        <CardTitle className='px-6 mb-4'>
-                            <sup>₹</sup> {product.price} /-
+                        <CardTitle className='px-6 mb-4 flex gap-1'>
+                            <div className="text-sm">₹</div>{product.price}
                         </CardTitle>
-                        <CardDescription className='px-7 text-black font-semibold'>
+                        <CardDescription className="px-6 font-bold">
+                            {product.warranty} months warranty
+                        </CardDescription>
+                        <CardDescription className='px-6 text-black font-semibold'>
                             Description:- {product.description}
                         </CardDescription>
-                        <CardDescription className='px-7 text-black font-semibold'>
+                        <CardDescription className='px-6 text-black font-semibold'>
                             Features:- {product.features.join(', ')}
                         </CardDescription>
                         <CardFooter>
                             <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
-                                Add to cart
+                                Add to Cart
                             </Button>
                         </CardFooter>
                     </CardContent>

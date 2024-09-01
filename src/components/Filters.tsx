@@ -28,14 +28,14 @@ const Filters: React.FC = () => {
             <div className='w-1/5 border-r shadow-lg left-0 px-5'>
                 <h1 className="text-sm text-gray-900 font-semibold pt-2 pb-1">Rating</h1>
                 <div className="w-4/5 flex justify-center gap-1 px-4 py-2 bg-lightGray border">
-                    {Array.from([1, 2, 3, 4, 5]).map(() => (
-                        <Image src={"/star.png"} width={20} height={20} alt={"Star Image"}
+                    {Array.from([1, 2, 3, 4, 5]).map((_,index) => (
+                        <Image key={index} src={"/star.png"} width={20} height={20} alt={"Star Image"}
                             className="hover:border-2 hover:border-transparent cursor-pointer" />
                     ))}
                 </div>
                 <h1 className="text-sm text-gray-900 font-semibold pt-6">Brands</h1>
-                {brands.map((brand) => (
-                    <div key={brand.id} className="flex gap-2 items-center px-2 pt-2 pl-2">
+                {brands.map((brand,index) => (
+                    <div key={index} className="flex gap-2 items-center px-2 pt-2 pl-2">
                         <Checkbox
                             id={brand.id}
                             checked={filterBrands.includes(brand.name)}

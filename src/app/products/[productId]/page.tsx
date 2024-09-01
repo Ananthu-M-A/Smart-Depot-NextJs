@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function productDetails({ params }: ParamsInterface) {
+export default function ProductDetails({ params }: ParamsInterface) {
     const [product, setProduct] = useState<ProductInterface>();
     useEffect(() => {
         const index = parseInt(params.productId) - 1;

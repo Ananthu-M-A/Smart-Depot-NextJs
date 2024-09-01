@@ -5,13 +5,13 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import Pagination from './Pagination';
 
-const Products: React.FC = () => {
+const ProductsList: React.FC = () => {
     return (
         <div className='px-5'>
             <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
             {productsList.map((product, index) => (
                 <Card key={index} className='mb-4 shadow-lg border flex w-full'>
-                    <CardContent className="w-1/2 p-5 cursor-pointer border shadow-lg rounded-l">
+                    <CardContent className="w-1/2 p-20 cursor-pointer border shadow-lg rounded-l">
                         <Image
                             src={product.image}
                             objectFit="cover"
@@ -58,4 +58,4 @@ const Products: React.FC = () => {
     )
 }
 
-export default Products
+export default ProductsList

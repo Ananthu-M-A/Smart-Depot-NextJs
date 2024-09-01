@@ -1,5 +1,5 @@
 import Filters from "@/components/Filters";
-import ProductsList from "@/components/Products";
+import ProductsList from "@/components/ProductsList";
 import Sort from "@/components/Sort";
 
 export default function Products() {

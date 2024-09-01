@@ -12,7 +12,7 @@ const Scrollers: React.FC = () => {
             <div className='p-4 flex gap-4 w-full'>
                 {productsList.map((product, index) => (
                     <div key={index} className='gap-4'>
-                        <Card className='w-[200px] h-[300px] hover:cursor-pointer'>
+                        <Card className='w-[200px] h-[300px] hover:cursor-pointer shadow-lg'>
                             <CardHeader className='overflow-hidden'>
                                 <TooltipProvider>
                                     <Tooltip>

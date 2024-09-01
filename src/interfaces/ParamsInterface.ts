@@ -1,5 +1,6 @@
 export interface ParamsInterface {
     params: {
-        productId: string
+        productId: string,
+        userId: string
     }
 }

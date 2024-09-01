@@ -57,15 +57,15 @@ export default function ProductDetails({ params }: ParamsInterface) {
                             <Table className="border py-2">
                                 <TableHeader>
                                     <TableRow>
-                                        {Object.keys(product.specifications).map((key) => (
-                                            <TableHead className="border">{key.toLocaleUpperCase()}</TableHead>
+                                        {Object.keys(product.specifications).map((key,index) => (
+                                            <TableHead key={index} className="border">{key.toLocaleUpperCase()}</TableHead>
                                         ))}
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
                                     <TableRow>
-                                        {Object.values(product.specifications).map((value) => (
-                                            <TableCell className="border">{value}</TableCell>
+                                        {Object.values(product.specifications).map((value,index) => (
+                                            <TableCell key={index} className="border">{value}</TableCell>
                                         ))}
                                     </TableRow>
                                 </TableBody>

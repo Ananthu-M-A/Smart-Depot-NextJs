@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LoginSecurity from "../../../components/LoginSecurity";
+import LoginSecurity from "@/components/LoginSecurity";
 import Addresses from "@/components/Addresses";
 import Orders from "@/components/Orders";
 import { useEffect, useState } from "react";

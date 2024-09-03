@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select"
 import { Button } from './ui/button'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Navbar: React.FC = () => {
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
@@ -19,7 +20,11 @@ const Navbar: React.FC = () => {
   return (
     <div className='bg-midnight p-4 flex justify-between fixed w-full z-50'>
       <div className='py-3'>
-        <h1 className='text-lightGray text-2xl font-bold opacity-90'>SMART DEPOT</h1>
+        <h1 className='text-lightGray text-2xl font-bold opacity-90'>
+          <Link href="/">
+            SMART DEPOT
+          </Link>
+        </h1>
       </div>
       <div className='py-2'>
         <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
@@ -56,37 +61,37 @@ const Navbar: React.FC = () => {
         </Select>
         <Input placeholder='Search...' />
         <Button className='bg-lightGray hover:bg-gray-300'>
-          <Image src={'/search.png'} width={30} height={20} alt="search-icon"/>
+          <Image src={'/search.png'} width={30} height={20} alt="search-icon" />
         </Button>
       </div>
-      <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
+      <Link href="/account/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Hello,</p>
-          <Image src={'/account.png'} width={25} height={20} alt="account-icon"/>
+          <Image src={'/account.png'} width={25} height={20} alt="account-icon" />
         </div>
         <h1 className='text-lightGray font-semibold text-md'>Ananthu</h1>
-      </div>
+      </Link>
       <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Deliver to Ananthu</p>
-          <Image src={'/location.png'} width={25} height={10} alt="location-icon"/>
+          <Image src={'/location.png'} width={25} height={10} alt="location-icon" />
         </div>
         <h1 className='text-lightGray font-semibold text-sm mt-1'>Chemanchery, 673304</h1>
       </div>
-      <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
+      <Link href="/account/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-light text-xs mt-1'>Returns &</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-2'>Orders</h1>
-          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon"/>
+          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon" />
         </div>
-      </div>
-      <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
+      </Link>
+      <Link href="/cart/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-thin text-xs mt-1'>Your</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-1'>Cart</h1>
-          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon"/>
+          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon" />
         </div>
-      </div>
+      </Link>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
@@ -80,6 +80,18 @@ export default function ForgotPassword() {
                             </DrawerFooter>
                         </DrawerContent>
                     </Drawer>
+                </CardContent>
+                <CardContent className="flex justify-between text-center">
+                    <CardDescription>
+                        <Link href="/register">
+                            Create an account
+                        </Link>
+                    </CardDescription>
+                    <CardDescription>
+                        <Link href="/login">
+                            Login
+                        </Link>
+                    </CardDescription>
                 </CardContent>
             </Card>
             <Link href={`https://portfolio.smartdepot.co.in/`}>

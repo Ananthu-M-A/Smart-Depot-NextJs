@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
@@ -77,12 +77,19 @@ export default function Register() {
                         </DrawerContent>
                     </Drawer>
                 </CardContent>
+                <CardContent className="text-center">
+                    <CardDescription>
+                        <Link href="/login">
+                            Already have an account ?
+                        </Link>
+                    </CardDescription>
+                </CardContent>
             </Card>
-            <Link href={`https://portfolio.smartdepot.co.in/`}>
-                <h1 className='text-midnight w-1/4 text-sm font-semibold text-center py-4 mx-auto'>
+            <h1 className='text-midnight w-1/4 text-sm font-semibold text-center py-4 mx-auto'>
+                <Link href={`https://portfolio.smartdepot.co.in/`}>
                     smartdepot.co.in
-                </h1>
-            </Link>
+                </Link>
+            </h1>
         </div>
     )
 }

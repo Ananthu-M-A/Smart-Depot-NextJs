@@ -11,11 +11,13 @@ import {
 import { Button } from './ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 const Navbar: React.FC = () => {
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
+  const params = useParams();
 
   return (
     <div className='bg-midnight p-4 flex justify-between fixed w-full z-50'>
@@ -64,28 +66,28 @@ const Navbar: React.FC = () => {
           <Image src={'/search.png'} width={30} height={20} alt="search-icon" />
         </Button>
       </div>
-      <Link href="/account/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      <Link href="/account/1/login-security" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Hello,</p>
           <Image src={'/account.png'} width={25} height={20} alt="account-icon" />
         </div>
         <h1 className='text-lightGray font-semibold text-md'>Ananthu</h1>
       </Link>
-      <div className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
+      <Link href={`/account/${params?.userId}/addresses`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Deliver to Ananthu</p>
           <Image src={'/location.png'} width={25} height={10} alt="location-icon" />
         </div>
         <h1 className='text-lightGray font-semibold text-sm mt-1'>Chemanchery, 673304</h1>
-      </div>
-      <Link href="/account/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      </Link>
+      <Link href={`/account/${params?.userId}/orders`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-light text-xs mt-1'>Returns &</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-2'>Orders</h1>
           <Image src={'/orders.png'} width={30} height={20} alt="orders-icon" />
         </div>
       </Link>
-      <Link href="/cart/1" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      <Link href={`/cart/${params?.userId}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-thin text-xs mt-1'>Your</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-1'>Cart</h1>

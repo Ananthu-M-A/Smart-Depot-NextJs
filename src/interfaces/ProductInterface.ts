@@ -15,7 +15,7 @@ interface Specifications {
     power?: string;
     temperatureRange?: string;
     airFlow?: string;
-    weight: string;
+    weight?: string;
     tipCompatibility?: string;
     displayCount?: string;
     accuracy?: string;

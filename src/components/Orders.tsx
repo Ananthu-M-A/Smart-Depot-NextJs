@@ -38,20 +38,23 @@ const Orders: React.FC = () => {
                                                 </CardHeader>
                                                 <CardContent className="flex justify-between items-center border p-4">
                                                     <CardContent className="px-0">
-                                                            <CardTitle className="text-xl cursor-pointer">
-                                                                {product.productName}
-                                                                <CardDescription className="font-bold">
-                                                                    {product.brand}
-                                                                </CardDescription>
-                                                            </CardTitle>
-                                                        </CardContent>
+                                                        <CardTitle className="text-xl cursor-pointer">
+                                                            {product.productName}
+                                                            <CardDescription className="font-bold">
+                                                                {product.brand}
+                                                            </CardDescription>
+                                                        </CardTitle>
+                                                    </CardContent>
                                                     <CardContent>
-                                                        <Image
-                                                            src={product.image}
-                                                            objectFit="cover"
-                                                            alt={product.productName}
-                                                            className="w-20"
-                                                        />
+                                                        <CardContent className='p-5'>
+                                                            <Image
+                                                                src={product.image}
+                                                                objectFit="fill"
+                                                                alt={product.productName}
+                                                                width={120}
+                                                                height={100}
+                                                            />
+                                                        </CardContent>
                                                     </CardContent>
                                                     <CardContent>
                                                         <p className="text-sm px-2 text-right">₹{product.price}</p>
@@ -60,7 +63,7 @@ const Orders: React.FC = () => {
                                                         <p className="text-sm px-2">₹{product.price}</p>
                                                     </CardContent>
                                                 </CardContent>
-                                                <CardContent className="flex justify-between text-midnight font-semibold py-2 px-10">   
+                                                <CardContent className="flex justify-between text-midnight font-semibold py-2 px-10">
                                                     <Link href={""}>Print Invoice</Link>
                                                     <Link href={""}>Return Order</Link>
                                                     <Link href={""}>Buy Again</Link>

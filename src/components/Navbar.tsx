@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
             <SelectValue>
               <div className='flex gap-1 text-lightGray'>
                 <h1 className='text-md font-bold opacity-90'>{selectedLanguage}</h1>
-                <Image src={'/language.png'} width={25} height={20} alt={'language-icon'} />
+                <Image src={'/language.png'} width={20} height={20} alt={'language-icon'} />
               </div>
             </SelectValue>
           </SelectTrigger>
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
         </Select>
         <Input placeholder='Search...' />
         <Button className='bg-lightGray hover:bg-gray-300'>
-          <Image src={'/search.png'} width={30} height={20} alt="search-icon" />
+          <Image src={'/search.png'} width={25} height={25} alt="search-icon" />
         </Button>
       </div>
       <Link href="/account/1/login-security" className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>

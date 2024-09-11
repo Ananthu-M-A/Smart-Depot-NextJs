@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from './ui/drawer'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { productsList } from '@/constants/productsList'

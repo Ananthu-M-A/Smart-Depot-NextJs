@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from './ui/button'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 

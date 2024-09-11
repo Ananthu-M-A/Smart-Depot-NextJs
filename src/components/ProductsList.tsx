@@ -1,7 +1,7 @@
 import { productsList } from '@/constants/productsList';
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Button } from './ui/button';
 import Pagination from './Pagination';
 

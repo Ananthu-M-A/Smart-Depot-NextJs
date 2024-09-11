@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { productsList } from "@/constants/productsList";
 import { ParamsInterface } from "@/interfaces/ParamsInterface";
 import { ProductInterface } from "@/interfaces/ProductInterface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

@@ -5,7 +5,7 @@ import { Checkbox } from "./ui/checkbox"
 import { brands } from "@/constants/filters";
 import { Slider } from "./ui/slider";
 import { Button } from "./ui/button";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Filters: React.FC = () => {
     const [filterBrands, setFilterBrands] = useState<string[]>([]);

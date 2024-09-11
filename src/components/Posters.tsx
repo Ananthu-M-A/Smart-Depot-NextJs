@@ -8,7 +8,7 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { posters } from '@/constants/posters'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 
 const Posters: React.FC = () => {

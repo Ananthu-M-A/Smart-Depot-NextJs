@@ -9,7 +9,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { carousel } from "@/constants/carousel";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Banners: React.FC = () => {
   const plugin = React.useRef(

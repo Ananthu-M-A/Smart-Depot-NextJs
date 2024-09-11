@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { productsList } from "@/constants/productsList";
 import { ParamsInterface } from "@/interfaces/ParamsInterface";
 import { ProductInterface } from "@/interfaces/ProductInterface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -60,13 +60,16 @@ export default function CartDetails({ params }: ParamsInterface) {
                                 </CardDescription>
                             </CardHeader>
                         </CardContent>
-                        <CardContent className="w-1/4 p-1">
-                            <Image
-                                src={product.image}
-                                objectFit="cover"
-                                alt={product.productName}
-                                className='p-5'
-                            />
+                        <CardContent className="w-1/4 p-2">
+                            <CardContent>
+                                <Image
+                                    src={product.image}
+                                    objectFit="contain"
+                                    alt={product.productName}
+                                    width={125}
+                                    height={125}
+                                />
+                            </CardContent>
                         </CardContent>
                         <CardContent className="flex w-1/4 p-1 text-right">
                             <CardTitle className='p-5'>

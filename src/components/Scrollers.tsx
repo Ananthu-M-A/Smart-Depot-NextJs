@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { productsList } from '@/constants/productsList'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 
@@ -33,7 +33,7 @@ const Scrollers: React.FC = () => {
                                     src={product.image}
                                     alt={`Product Image ${index + 1}`}
                                     width={200}
-                                    height={300}
+                                    height={150}
                                 />
                             </CardContent>
                             <CardFooter className='grid'>

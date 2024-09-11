@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { productsList } from "@/constants/productsList";
 import { ParamsInterface } from "@/interfaces/ParamsInterface";
 import { ProductInterface } from "@/interfaces/ProductInterface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 
 export default function WishlistDetails({ params }: ParamsInterface) {
@@ -28,7 +28,7 @@ export default function WishlistDetails({ params }: ParamsInterface) {
                     <ScrollArea className="whitespace-nowrap rounded-md bg-lightGray">
                         <div className='p-4 flex gap-4 w-full'>
                             <div className='gap-4'>
-                                <Card className='w-[200px] h-[300px] hover:cursor-pointer shadow-lg'>
+                                <Card className='w-[200px] h-[325px] hover:cursor-pointer shadow-lg'>
                                     <CardHeader className='overflow-hidden'>
                                         <CardDescription className="flex justify-left gap-1">
                                             {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
@@ -55,7 +55,7 @@ export default function WishlistDetails({ params }: ParamsInterface) {
                                             src={product.image}
                                             alt={`Product Image ${1}`}
                                             width={200}
-                                            height={300}
+                                            height={150}
                                         />
                                     </CardContent>
                                     <CardFooter className='grid'>
@@ -64,9 +64,8 @@ export default function WishlistDetails({ params }: ParamsInterface) {
                                                 <Image
                                                     src="/cart.png"
                                                     alt={`Product Image ${1}`}
-                                                    width={100}
+                                                    width={20}
                                                     height={20}
-                                                    className="w-5"
                                                 />
                                             </Button>
                                             <Button className="w-10 bg-lightGray hover:bg-gray-300 border text-xl text-gray-900">

@@ -1,21 +1,42 @@
-import { productsList } from '@/constants/productsList';
-import React from 'react';
+"use client"
+
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import Image from "next/legacy/image";
 import { Button } from './ui/button';
 import Pagination from './Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '@/redux/product.slice';
+import { ProductInterface } from '@/interfaces/product.interface';
+import { AppDispatch, RootState } from '@/redux/store';
+import demoImage from '../../public/accessory1.jpg'
 
 const ProductsList: React.FC = () => {
-    return (
-        <div className='px-5'>
+
+    const dispatch = useDispatch<AppDispatch>();
+    const { products, status, error } = useSelector((state: RootState) => state.product);
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchProducts());
+        }
+    }, [dispatch, status]);
+
+    let productsList;
+
+    if (status === 'loading') {
+        productsList = <p>Loading...</p>;
+    } else if (status === 'succeeded') {
+        productsList = <div className='px-5'>
             <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
-            {productsList.map((product, index) => (
+            {products.map((product: ProductInterface, index: number) => (
                 <Card key={index} className='mb-4 shadow-lg border flex w-full'>
                     <CardContent className="w-1/2 p-20 cursor-pointer border shadow-lg rounded-l">
                         <Image
-                            src={product.image}
+                            src={demoImage}
                             objectFit="cover"
                             alt={`Product Image ${index + 1}`}
+                            width={300} height={300}
                             className=''
                         />
                     </CardContent>
@@ -55,6 +76,14 @@ const ProductsList: React.FC = () => {
                 <Pagination />
             </div>
         </div>
+    } else if (status === 'failed') {
+        productsList = <p>{error}</p>;
+    }
+
+    return (
+        <>
+            {productsList}
+        </>
     )
 }
 

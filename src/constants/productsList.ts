@@ -1,4 +1,4 @@
-import { ProductInterface } from "@/interfaces/ProductInterface"
+import { ProductInterface } from "@/interfaces/product.interface"
 import product1 from "../../public/product1.jpg"
 
 export const productsList: ProductInterface[] = [

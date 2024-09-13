@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { productsList } from "@/constants/productsList";
-import { ParamsInterface } from "@/interfaces/ParamsInterface";
-import { ProductInterface } from "@/interfaces/ProductInterface";
+import { ParamsInterface } from "@/interfaces/params.interface";
+import { ProductInterface } from "@/interfaces/product.interface";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";

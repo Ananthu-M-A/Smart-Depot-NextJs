@@ -6,7 +6,7 @@ import Image from "next/legacy/image"
 import Link from 'next/link'
 import { Button } from './ui/button'
 import { productsList } from '@/constants/productsList'
-import { ProductInterface } from '@/interfaces/ProductInterface'
+import { ProductInterface } from '@/interfaces/product.interface'
 
 const Orders: React.FC = () => {
     const [product, setProduct] = useState<ProductInterface>();

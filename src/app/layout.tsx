@@ -2,6 +2,7 @@ import "./globals.css"
 import { Inter as FontSans } from "next/font/google"
 
 import { cn } from "@/lib/utils"
+import ClientProvider from "@/components/ClientProvider"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,7 +25,9 @@ export default function RootLayout({
         "min-h-screen bg-background font-sans antialiased",
         fontSans.variable
       )}>
-        {children}
+        <ClientProvider>
+          {children}
+        </ClientProvider>
       </body>
     </html>
   )

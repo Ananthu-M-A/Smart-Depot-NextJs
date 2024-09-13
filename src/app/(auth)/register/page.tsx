@@ -21,8 +21,10 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 
-
 export default function Register() {
+
+    
+
     return (
         <div className='py-5'>
             <h1 className='text-midnight w-1/4 text-4xl font-bold text-center py-4 mx-auto'>
@@ -35,16 +37,20 @@ export default function Register() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Label className="text-sm font-semibold p-3">Email:</Label>
-                    <Input value={`naasdad@gmail.com`} />
+                    <Label className="text-sm font-semibold p-3">Your Name:</Label>
+                    <Input value={`Ananthu M A`} name="fullname" />
                 </CardContent>
                 <CardContent>
-                    <Label className="text-sm font-semibold p-3">Your Name:</Label>
-                    <Input value={`Ananthu M A`} />
+                    <Label className="text-sm font-semibold p-3">Email:</Label>
+                    <Input value={`naasdad@gmail.com`} name="email" />
+                </CardContent>
+                <CardContent>
+                    <Label className="text-sm font-semibold p-3">Mobile:</Label>
+                    <Input value={`9869565655`} name="mobile" />
                 </CardContent>
                 <CardContent>
                     <Label className="text-sm font-semibold p-3">Password:</Label>
-                    <Input value={`********`} />
+                    <Input value={`********`} name="password" />
                 </CardContent>
                 <CardContent className="text-center">
                     <Drawer>

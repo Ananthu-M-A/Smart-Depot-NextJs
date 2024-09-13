@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { productsList } from "@/constants/productsList";
-import { ParamsInterface } from "@/interfaces/ParamsInterface";
-import { ProductInterface } from "@/interfaces/ProductInterface";
+import { ParamsInterface } from "@/interfaces/params.interface";
+import { ProductInterface } from "@/interfaces/product.interface";
 import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
 

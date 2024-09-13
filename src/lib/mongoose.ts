@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export default function dbConnect() {
+export default function connectDb() {
     const MONGODB_URI = process.env.MONGODB_URI;
     console.log(MONGODB_URI);
     

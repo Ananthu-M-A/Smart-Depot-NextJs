@@ -1,6 +1,6 @@
 "use client"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Errors } from "@/interfaces/ErrorInterface";
+import { Errors } from "@/interfaces/error.interface";
 
 export default function ErrorBoundary({ error, reset }: Errors) {
 

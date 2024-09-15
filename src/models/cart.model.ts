@@ -1,3 +1,4 @@
+import ICartItem from "@/interfaces/cart.interface";
 import { model, Schema } from "mongoose";
 
 const cartItemSchema = new Schema({
@@ -25,6 +26,6 @@ const cartItemSchema = new Schema({
     }]
 })
 
-const CartItem = model('CartItem', cartItemSchema);
+const CartItem = model<ICartItem>('CartItem', cartItemSchema);
 
 export default CartItem;

@@ -1,3 +1,4 @@
+import IOrder from "@/interfaces/order.interface";
 import { model, Schema } from "mongoose";
 
 const orderSchema = new Schema({
@@ -57,6 +58,6 @@ const orderSchema = new Schema({
     },
 })
 
-const Order = model('Order', orderSchema);
+const Order = model<IOrder>('Order', orderSchema);
 
 export default Order;

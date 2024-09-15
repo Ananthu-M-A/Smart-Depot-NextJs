@@ -1,17 +1,6 @@
 import { StaticImageData } from "next/legacy/image";
 
-export interface ProductInterface {
-    productName: string;
-    brand: string;
-    image: StaticImageData;
-    price: number;
-    warranty: number;
-    description: string;
-    features: string[];
-    specifications: Specifications;
-}
-
-interface Specifications {
+interface ISpec extends Document {
     power?: string;
     temperatureRange?: string;
     airFlow?: string;
@@ -36,3 +25,16 @@ interface Specifications {
     vacuumPressure?: string;
     responseTime?: string;
 }
+
+interface IProduct extends Document {
+    productName: string;
+    brand: string;
+    image: StaticImageData;
+    price: number;
+    warranty: number;
+    description: string;
+    features: string[];
+    specifications: ISpec;
+}
+
+export default IProduct;

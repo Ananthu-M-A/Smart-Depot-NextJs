@@ -1,6 +1,5 @@
 import { model, models, Schema } from 'mongoose';
-import cartItemSchema from './cart.model';
-import wishlistSchema from './wishlist.model';
+import IUser from '@/interfaces/user.interface';
 
 const userSchema = new Schema({
     name: {
@@ -29,6 +28,7 @@ const userSchema = new Schema({
     },
     blocked: {
         type: Boolean,
+        required: true
     },
     offerApplied: {
         type: Boolean,
@@ -37,9 +37,8 @@ const userSchema = new Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user',
+        required: true
     },
-    wishlist: [wishlistSchema],
-    cart: [cartItemSchema],
     createdAt: {
         type: Date,
         default: Date.now,
@@ -47,6 +46,6 @@ const userSchema = new Schema({
 
 });
 
-const User = model('User', userSchema);
+const User = model<IUser>('User', userSchema);
 
 export default User;

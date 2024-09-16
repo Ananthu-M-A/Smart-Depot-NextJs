@@ -1,5 +1,5 @@
 import IWishlist from "@/interfaces/wishlist.interface";
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 const wishlistSchema = new Schema({
     userId: {
@@ -15,6 +15,6 @@ const wishlistSchema = new Schema({
     }],
 })
 
-const Wishlist = model<IWishlist>('Wishlist', wishlistSchema);
+const Wishlist = models.Wishlist || model<IWishlist>('Wishlist', wishlistSchema);
 
 export default Wishlist;

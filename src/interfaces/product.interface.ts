@@ -27,14 +27,15 @@ interface ISpec extends Document {
 }
 
 interface IProduct extends Document {
-    productName: string;
+    name: string;
     brand: string;
-    image: StaticImageData;
+    imageUrls: StaticImageData[];
     price: number;
     warranty: number;
     description: string;
     features: string[];
     specifications: ISpec;
+    category: string;
 }
 
 export default IProduct;

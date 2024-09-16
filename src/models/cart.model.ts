@@ -1,5 +1,5 @@
 import ICartItem from "@/interfaces/cart.interface";
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 const cartItemSchema = new Schema({
     userId: {
@@ -26,6 +26,6 @@ const cartItemSchema = new Schema({
     }]
 })
 
-const CartItem = model<ICartItem>('CartItem', cartItemSchema);
+const CartItem = models.CartItem || model<ICartItem>('CartItem', cartItemSchema);
 
 export default CartItem;

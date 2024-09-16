@@ -1,5 +1,5 @@
 import IAddress from "@/interfaces/address.interface";
-import { model, Schema } from "mongoose";
+import { model, models, Schema } from "mongoose";
 
 const addressSchema = new Schema({
     userId: {
@@ -46,6 +46,6 @@ const addressSchema = new Schema({
 
 });
 
-const Address = model<IAddress>('Address', addressSchema);
+const Address = models.Address || model<IAddress>('Address', addressSchema);
 
 export default Address;

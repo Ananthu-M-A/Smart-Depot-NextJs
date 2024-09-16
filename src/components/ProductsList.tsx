@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 import Pagination from './Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '@/redux/product.slice';
-import { ProductInterface } from '@/interfaces/product.interface';
+import IProduct, { } from '@/interfaces/product.interface';
 import { AppDispatch, RootState } from '@/redux/store';
 import demoImage from '../../public/accessory1.jpg'
 
@@ -22,67 +22,64 @@ const ProductsList: React.FC = () => {
         }
     }, [dispatch, status]);
 
-    let productsList;
-
-    if (status === 'loading') {
-        productsList = <p>Loading...</p>;
-    } else if (status === 'succeeded') {
-        productsList = <div className='px-5'>
-            <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
-            {products.map((product: ProductInterface, index: number) => (
-                <Card key={index} className='mb-4 shadow-lg border flex w-full'>
-                    <CardContent className="w-1/2 p-20 cursor-pointer border shadow-lg rounded-l">
-                        <Image
-                            src={demoImage}
-                            objectFit="cover"
-                            alt={`Product Image ${index + 1}`}
-                            width={300} height={300}
-                            className=''
-                        />
-                    </CardContent>
-                    <CardContent className="w-1/2 p-1 border-l">
-                        <CardHeader>
-                            <CardDescription className="flex justify-left gap-1">
-                                {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
-                                    <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
-                                        className="hover:border-2 hover:border-transparent cursor-pointer" />
-                                ))}
-                            </CardDescription>
-                            <CardTitle className='text-xl cursor-pointer'>{product.productName}
-                                <CardDescription className='font-bold'>{product.brand}</CardDescription>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardTitle className='px-6 mb-4 flex gap-1'>
-                            <div className="text-sm">₹</div>{product.price}
-                        </CardTitle>
-                        <CardDescription className="px-6 font-bold">
-                            {product.warranty} months warranty
-                        </CardDescription>
-                        <CardDescription className='px-6 text-black font-semibold'>
-                            Description:- {product.description}
-                        </CardDescription>
-                        <CardDescription className='px-6 text-black font-semibold'>
-                            Features:- {product.features.join(', ')}
-                        </CardDescription>
-                        <CardFooter>
-                            <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
-                                Add to Cart
-                            </Button>
-                        </CardFooter>
-                    </CardContent>
-                </Card>
-            ))}
-            <div className='flex justify-center'>
-                <Pagination />
-            </div>
-        </div>
-    } else if (status === 'failed') {
-        productsList = <p>{error}</p>;
-    }
-
     return (
         <>
-            {productsList}
+            {(status === 'loading')
+                ? <p>Loading...</p>
+                : (status === 'succeeded')
+                    ? <div className='px-5'>
+                        <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
+                        {products.map((product: IProduct, index: number) => (
+                            <Card key={index} className='mb-4 shadow-lg border flex w-full'>
+                                <CardContent className="w-1/2 p-20 cursor-pointer border shadow-lg rounded-l">
+                                    <Image
+                                        src={demoImage}
+                                        objectFit="cover"
+                                        alt={`Product Image ${index + 1}`}
+                                        width={300} height={300}
+                                        className=''
+                                    />
+                                </CardContent>
+                                <CardContent className="w-1/2 p-1 border-l">
+                                    <CardHeader>
+                                        <CardDescription className="flex justify-left gap-1">
+                                            {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
+                                                <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
+                                                    className="hover:border-2 hover:border-transparent cursor-pointer" />
+                                            ))}
+                                        </CardDescription>
+                                        <CardTitle className='text-xl cursor-pointer'>{product.name}
+                                            <CardDescription className='font-bold'>{product.brand}</CardDescription>
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardTitle className='px-6 mb-4 flex gap-1'>
+                                        <div className="text-sm">₹</div>{product.price}
+                                    </CardTitle>
+                                    <CardDescription className="px-6 font-bold">
+                                        {product.warranty} months warranty
+                                    </CardDescription>
+                                    <CardDescription className='px-6 text-black font-semibold'>
+                                        Description:- {product.description}
+                                    </CardDescription>
+                                    <CardDescription className='px-6 text-black font-semibold'>
+                                        Features:- {product.features.join(', ')}
+                                    </CardDescription>
+                                    <CardFooter>
+                                        <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
+                                            Add to Cart
+                                        </Button>
+                                    </CardFooter>
+                                </CardContent>
+                            </Card>
+                        ))}
+                        <div className='flex justify-center'>
+                            <Pagination />
+                        </div>
+                    </div>
+                    : (status === 'failed')
+                        ? <p>{error}</p>
+                        : <></>
+            }
         </>
     )
 }

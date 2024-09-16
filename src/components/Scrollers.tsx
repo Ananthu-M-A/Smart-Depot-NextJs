@@ -7,7 +7,7 @@ import Image from "next/legacy/image"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/redux/store'
-import { fetchProducts } from '@/redux/product.slice'
+import { fetchProducts } from '@/redux/slices/products.slice'
 import IProduct from '@/interfaces/product.interface'
 import demoImage from '../../public/accessory1.jpg'
 

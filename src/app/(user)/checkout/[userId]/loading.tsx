@@ -6,7 +6,7 @@ export default function Loading() {
         <Card className="flex justify-center text-center border-0 shadow-0">
             <CardHeader className="my-20 p-20">
                 <CardTitle className="text-4xl animate-ping">
-                    Loading Product Details...
+                    Loading Checkout...
                 </CardTitle>
             </CardHeader>
         </Card>

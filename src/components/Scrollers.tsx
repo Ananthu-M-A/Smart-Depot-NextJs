@@ -10,6 +10,7 @@ import { AppDispatch, RootState } from '@/redux/store'
 import { fetchProducts } from '@/redux/slices/products.slice'
 import IProduct from '@/interfaces/product.interface'
 import demoImage from '../../public/accessory1.jpg'
+import Loading from '@/app/loading'
 
 
 const Scrollers: React.FC = () => {
@@ -26,7 +27,7 @@ const Scrollers: React.FC = () => {
     return (
         <>
             {(status === 'loading')
-                ? <p>Loading...</p>
+                ? <Loading />
                 : (status === 'succeeded')
                     ? (<>
                         <h1 className='pl-6 pt-4 text-xl font-bold bg-lightGray'>More Tools & Equipments</h1>

@@ -26,7 +26,7 @@ const Addresses: React.FC = () => {
     return (
         <>
             {(status === 'loading')
-                ? <p>Loading...</p>
+                ? <></>
                 : (status === 'succeeded')
                     ? < Card className="flex gap-10 border-3 p-5">
                         {addresses.map((address: IAddress, index: number) => (

@@ -6,10 +6,12 @@ import Image from "next/legacy/image";
 import { Button } from './ui/button';
 import Pagination from './Pagination';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '@/redux/product.slice';
+import { fetchProducts } from '@/redux/slices/products.slice';
 import IProduct, { } from '@/interfaces/product.interface';
 import { AppDispatch, RootState } from '@/redux/store';
-import demoImage from '../../public/accessory1.jpg'
+import demoImage from '../../public/accessory1.jpg';
+import Loading from '@/app/loading';
+import Link from 'next/link';
 
 const ProductsList: React.FC = () => {
 
@@ -25,7 +27,7 @@ const ProductsList: React.FC = () => {
     return (
         <>
             {(status === 'loading')
-                ? <p>Loading...</p>
+                ? <Loading />
                 : (status === 'succeeded')
                     ? <div className='px-5'>
                         <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
@@ -48,7 +50,8 @@ const ProductsList: React.FC = () => {
                                                     className="hover:border-2 hover:border-transparent cursor-pointer" />
                                             ))}
                                         </CardDescription>
-                                        <CardTitle className='text-xl cursor-pointer'>{product.name}
+                                        <CardTitle className='text-xl cursor-pointer'>
+                                            <Link href={`/products/${product._id}`}>{product.name}</Link>
                                             <CardDescription className='font-bold'>{product.brand}</CardDescription>
                                         </CardTitle>
                                     </CardHeader>

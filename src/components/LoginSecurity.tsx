@@ -22,7 +22,7 @@ const LoginSecurity: React.FC = () => {
     return (
         <>
             {(status === 'loading')
-                ? <p>Loading...</p>
+                ? <></>
                 : (status === 'succeeded')
                     ? < Card className="flex justify-center border-0 p-5">
                         <CardContent className="w-1/2 border rounded-lg p-5">

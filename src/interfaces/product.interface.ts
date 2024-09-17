@@ -27,6 +27,7 @@ interface ISpec extends Document {
 }
 
 interface IProduct extends Document {
+    _id: string;
     name: string;
     brand: string;
     imageUrls: StaticImageData[];

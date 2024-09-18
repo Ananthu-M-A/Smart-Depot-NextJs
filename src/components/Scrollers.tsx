@@ -15,7 +15,7 @@ import Loading from '@/app/loading'
 
 const Scrollers: React.FC = () => {
 
-    const { status, products, error } = useSelector((state: RootState) => state.product);
+    const { status, products, error } = useSelector((state: RootState) => state.products);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

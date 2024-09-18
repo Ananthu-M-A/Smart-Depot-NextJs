@@ -10,31 +10,34 @@ import Link from "next/link";
 import { IdInterface } from '@/interfaces/id.interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
-import { fetchProductDetails } from '@/redux/slices/products.slice';
+import { fetchProductDetails } from '@/redux/slices/product.slice';
+import Loading from '@/app/loading';
+import demoImage from '../../public/accessory1.jpg';
+import IProduct from '@/interfaces/product.interface';
+
 
 const ProductDetails = ({ id }: IdInterface) => {
 
   const dispatch = useDispatch<AppDispatch>();
-  const { products, status, error } = useSelector((state: RootState) => state.product);
-  console.log(products[0]);
-
+  const { product, status, error }: { product: IProduct, status: string, error: string | null } = useSelector((state: RootState) => state.product);
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchProductDetails(id.productId));
+      dispatch(fetchProductDetails(id.productId as string));
     }
   }, [dispatch, status]);
 
   return (
     <>
-      <div>
-        {/* {products &&
-          <Card className='mb-10 flex w-full p-4 border-0'>
+      {(status === 'loading')
+        ? <Loading />
+        : (status === 'succeeded')
+          ? <Card className='mb-10 flex w-full p-4 border-0'>
             <CardContent className="w-1/2 p-10 cursor-pointer border shadow-lg rounded-l">
               <Image
-                src={products[0].image}
+                src={demoImage}
                 objectFit="cover"
-                alt={product.productName}
+                alt={product.name}
                 className=''
               />
             </CardContent>
@@ -46,7 +49,7 @@ const ProductDetails = ({ id }: IdInterface) => {
                       className="hover:border-2 hover:border-transparent cursor-pointer" />
                   ))}
                 </CardDescription>
-                <CardTitle className='text-xl cursor-pointer'>{product.productName}
+                <CardTitle className='text-xl cursor-pointer'>{product.name}
                   <CardDescription className='font-bold'>{product.brand}</CardDescription>
                 </CardTitle>
               </CardHeader>
@@ -122,10 +125,13 @@ const ProductDetails = ({ id }: IdInterface) => {
                 </Button>
               </CardFooter>
             </CardContent>
-          </Card>}
-        <Scrollers />
-        <Scrollers /> */}
-      </div>
+          </Card>
+          : (status === 'failed')
+            ? <p>{error}</p>
+            : <></>
+      }
+      <Scrollers />
+      <Scrollers />
     </>
   )
 }

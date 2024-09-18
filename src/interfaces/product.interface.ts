@@ -1,6 +1,6 @@
 import { StaticImageData } from "next/legacy/image";
 
-interface ISpec extends Document {
+interface ISpec {
     power?: string;
     temperatureRange?: string;
     airFlow?: string;
@@ -26,7 +26,7 @@ interface ISpec extends Document {
     responseTime?: string;
 }
 
-interface IProduct extends Document {
+interface IProduct {
     _id: string;
     name: string;
     brand: string;

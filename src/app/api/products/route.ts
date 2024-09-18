@@ -1,12 +1,14 @@
 import connectDb from "@/lib/mongoose";
 import Product from "@/models/product.model";
+import { NextResponse } from "next/server";
 
 export async function GET() {
-  connectDb();
   try {
+    await connectDb();
     const products = await Product.find();
-    return new Response(JSON.stringify(products), { status: 200 });
+    return NextResponse.json(products, { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to fetch products' }), { status: 500 });
+    console.error('Error fetching products:', error);
+    return NextResponse.json({ error: 'Failed to fetch products' }, { status: 500 });
   }
 }

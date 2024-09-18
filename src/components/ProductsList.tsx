@@ -16,7 +16,7 @@ import Link from 'next/link';
 const ProductsList: React.FC = () => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { products, status, error } = useSelector((state: RootState) => state.product);
+    const { products, status, error } = useSelector((state: RootState) => state.products);
 
     useEffect(() => {
         if (status === 'idle') {

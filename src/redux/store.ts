@@ -4,14 +4,16 @@ import ordersReducer from './slices/orders.slice';
 import addressesReducer from './slices/addresses.slice';
 import userReducer from './slices/user.slice';
 import cartItemsReducer from './slices/cartItems.slice';
+import productReducer from './slices/product.slice';
 
 export const store = configureStore({
   reducer: {
-    product: productsReducer,
+    products: productsReducer,
     orders: ordersReducer,
     addresses: addressesReducer,
     user: userReducer,
-    cartItems: cartItemsReducer
+    cartItems: cartItemsReducer,
+    product: productReducer,
   },
 });
 

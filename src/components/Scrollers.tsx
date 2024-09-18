@@ -11,6 +11,7 @@ import { fetchProducts } from '@/redux/slices/products.slice'
 import IProduct from '@/interfaces/product.interface'
 import demoImage from '../../public/accessory1.jpg'
 import Loading from '@/app/loading'
+import Link from 'next/link'
 
 
 const Scrollers: React.FC = () => {
@@ -40,7 +41,10 @@ const Scrollers: React.FC = () => {
                                                 <TooltipProvider>
                                                     <Tooltip>
                                                         <TooltipTrigger>
-                                                            <CardTitle className='text-left truncate'>{product.name}</CardTitle>
+                                                            <CardTitle className='text-left truncate'>
+                                                                <Link href={`/products/${product._id}`}>{product.name}
+                                                                </Link>
+                                                            </CardTitle>
                                                         </TooltipTrigger>
                                                         <TooltipContent>
                                                             <p className='text-xs'>{product.name}</p>

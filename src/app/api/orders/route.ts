@@ -1,12 +1,15 @@
 import connectDb from "@/lib/mongoose";
 import Order from "@/models/order.model";
+import { ParamsInterface } from "@/interfaces/params.interface";
+import { NextResponse } from "next/server";
 
-export async function GET() {
-    connectDb();
+export async function GET(_req: Request, { params }: ParamsInterface) {
     try {
-        const orders = await Order.find();
-        return new Response(JSON.stringify(orders), { status: 200 });
+        await connectDb();
+        const orders = await Order.find({ userId: params.userId });
+        return NextResponse.json(orders, { status: 200 });
     } catch (error) {
-        return new Response(JSON.stringify({ error: 'Failed to fetch orders' }), { status: 500 });
+        console.error('Error fetching orders:', error);
+        return NextResponse.json({ error: 'Failed to fetch orders' }, { status: 500 });
     }
 }

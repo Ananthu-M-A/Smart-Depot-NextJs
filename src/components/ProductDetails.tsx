@@ -7,25 +7,26 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Image from "next/legacy/image";
 import Link from "next/link";
-import { IdInterface } from '@/interfaces/id.interface';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { fetchProductDetails } from '@/redux/slices/product.slice';
 import Loading from '@/app/loading';
 import demoImage from '../../public/accessory1.jpg';
 import IProduct from '@/interfaces/product.interface';
+import { useParams } from 'next/navigation';
 
 
-const ProductDetails = ({ id }: IdInterface) => {
+const ProductDetails = () => {
 
   const dispatch = useDispatch<AppDispatch>();
+  const { productId } = useParams();
   const { product, status, error }: { product: IProduct, status: string, error: string | null } = useSelector((state: RootState) => state.product);
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchProductDetails(id.productId as string));
+      dispatch(fetchProductDetails(productId as string));
     }
-  }, [dispatch, status]);
+  }, [dispatch, status, productId]);
 
   return (
     <>
@@ -118,7 +119,12 @@ const ProductDetails = ({ id }: IdInterface) => {
               </CardDescription>
               <CardFooter className="flex gap-4 justify-center">
                 <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
-                  Add to Cart
+                  <Link href={{
+                    pathname: `/cart/${'userId'}`,
+                    query: { id: `${product._id}`, count: 1 }
+                  }}>
+                    Add to Cart
+                  </Link>
                 </Button>
                 <Button className='text-sm font-semibold bg-gray-900 text-lightGray my-4'>
                   Buy Now

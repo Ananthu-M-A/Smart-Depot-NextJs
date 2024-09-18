@@ -1,15 +1,18 @@
+import IUser from '@/interfaces/user.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-    const response = await fetch('/api/user');
-    const data = await response.json();
-    return data;
-});
+export const fetchUser = createAsyncThunk<IUser, string>('user/fetchUser',
+    async (userId) => {
+        const response = await fetch(`/api/login-security/${userId}`);
+        const data = await response.json();
+        console.log(data);
+        return data as IUser;
+    });
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: {},
+        user: {} as IUser,
         status: 'idle',
         error: null,
     },

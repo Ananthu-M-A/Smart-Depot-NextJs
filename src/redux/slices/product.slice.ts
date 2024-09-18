@@ -22,9 +22,9 @@ const productSlice = createSlice({
             .addCase(fetchProductDetails.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(fetchProductDetails.fulfilled, (state, action) => {
-                state.status = 'succeeded';
+            .addCase(fetchProductDetails.fulfilled, (state, action)  => {
                 state.product = action.payload;
+                state.status = 'succeeded';
             })
             .addCase(fetchProductDetails.rejected, (state, action) => {
                 state.status = 'failed';

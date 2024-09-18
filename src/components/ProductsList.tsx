@@ -32,7 +32,7 @@ const ProductsList: React.FC = () => {
                     ? <div className='px-5'>
                         <h1 className='text-lg font-bold py-2 px-1'>Results</h1>
                         {products.map((product: IProduct, index: number) => (
-                            <Card key={index} className='mb-4 shadow-lg border flex w-full'>
+                            <Card key={product._id} className='mb-4 shadow-lg border flex w-full'>
                                 <CardContent className="w-1/2 p-20 cursor-pointer border shadow-lg rounded-l">
                                     <Image
                                         src={demoImage}
@@ -51,7 +51,9 @@ const ProductsList: React.FC = () => {
                                             ))}
                                         </CardDescription>
                                         <CardTitle className='text-xl cursor-pointer'>
-                                            <Link href={`/products/${product._id}`}>{product.name}</Link>
+                                            <Link href={`/products/${product._id}`}>
+                                                {product.name}
+                                            </Link>
                                             <CardDescription className='font-bold'>{product.brand}</CardDescription>
                                         </CardTitle>
                                     </CardHeader>
@@ -68,8 +70,14 @@ const ProductsList: React.FC = () => {
                                         Features:- {product.features.join(', ')}
                                     </CardDescription>
                                     <CardFooter>
-                                        <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
-                                            Add to Cart
+                                        <Button
+                                            className='text-sm font-semibold bg-midnight text-lightGray my-4'>
+                                            <Link href={{
+                                                pathname: `/cart/${'userId'}`,
+                                                query: { id: `${product._id}`, count: 1 }
+                                            }}>
+                                                Add to Cart
+                                            </Link>
                                         </Button>
                                     </CardFooter>
                                 </CardContent>

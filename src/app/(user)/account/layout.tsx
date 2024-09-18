@@ -1,4 +1,5 @@
 "use client";
+
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useParams, usePathname } from "next/navigation";
@@ -25,13 +26,13 @@ export default function AccountLayout({
                 <Tabs value={defaultTab}>
                     <TabsList className="flex justify-center w-min mx-auto mt-5">
                         <TabsTrigger value="login-security">
-                            <Link href={`/account/${params.userId}/login-security`} passHref>Login Security</Link>
+                            <Link href={`/account/login-security/${params.userId}`} passHref>Login Security</Link>
                         </TabsTrigger>
                         <TabsTrigger value="orders">
-                            <Link href={`/account/${params.userId}/orders`} passHref>Orders</Link>
+                            <Link href={`/account/orders/${params.userId}`} passHref>Orders</Link>
                         </TabsTrigger>
                         <TabsTrigger value="addresses">
-                            <Link href={`/account/${params.userId}/addresses`} passHref>Addresses</Link>
+                            <Link href={`/account/addresses/${params.userId}`} passHref>Addresses</Link>
                         </TabsTrigger>
                     </TabsList>
                     {children}

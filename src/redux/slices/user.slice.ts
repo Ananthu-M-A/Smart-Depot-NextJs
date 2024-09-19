@@ -5,7 +5,6 @@ export const fetchUser = createAsyncThunk<IUser, string>('user/fetchUser',
     async (userId) => {
         const response = await fetch(`/api/login-security/${userId}`);
         const data = await response.json();
-        console.log(data);
         return data as IUser;
     });
 
@@ -23,7 +22,7 @@ export const loginUser = createAsyncThunk<IUser, { email: string, password: stri
                 const errorData = await response.json();
                 return rejectWithValue(errorData);
             }
-            const user: IUser = await response.json();
+            const user: IUser = await response.json();            
             return user;
         } catch (error) {
             return rejectWithValue((error as Error).message);

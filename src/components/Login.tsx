@@ -19,6 +19,9 @@ import Link from "next/link";
 import { useDispatch } from "react-redux"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
+import { loginUser } from '@/redux/slices/user.slice'
+import { AppDispatch } from '@/redux/store'
+import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
     email: z
@@ -35,7 +38,8 @@ const FormSchema = z.object({
 
 const Login: React.FC = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+    const router = useRouter();
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -46,8 +50,14 @@ const Login: React.FC = () => {
         },
     });
 
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(data);
+    async function onSubmit(data: z.infer<typeof FormSchema>) {
+        try {
+            await dispatch(loginUser(data)).unwrap();
+            router.push('/')
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
+
     }
 
     return (

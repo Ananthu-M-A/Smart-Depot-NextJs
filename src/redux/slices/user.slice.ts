@@ -9,6 +9,28 @@ export const fetchUser = createAsyncThunk<IUser, string>('user/fetchUser',
         return data as IUser;
     });
 
+export const loginUser = createAsyncThunk<IUser, { email: string, password: string }>
+    ('user/loginUser', async (loginData, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`/api/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+            if (!response.ok) {
+                const errorData = await response.json();
+                return rejectWithValue(errorData);
+            }
+            const user: IUser = await response.json();
+            return user;
+        } catch (error) {
+            return rejectWithValue((error as Error).message);
+        }
+
+    });
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
@@ -29,7 +51,18 @@ const userSlice = createSlice({
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'failed';
                 // state.error = action.error.message;
-            });
+            })
+            .addCase(loginUser.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.user = action.payload;
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.status = 'failed';
+                // state.error = action.error.message;
+            })
     },
 });
 

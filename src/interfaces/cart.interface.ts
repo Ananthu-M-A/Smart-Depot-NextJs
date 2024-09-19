@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-interface ICartItem extends Document {
+interface ICartItem {
     userId: Types.ObjectId;
     items: {
         productId: Types.ObjectId;

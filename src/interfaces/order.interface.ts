@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-interface IOrder extends Document {
+interface IOrder {
     userId: Types.ObjectId;
     orderItems: {
         productId: Types.ObjectId;

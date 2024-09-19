@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 
-interface IUser extends Document {
-    name: string;
+interface IUser {
+    name?: string;
     email: string;
     mobile?: string;
     password: string;

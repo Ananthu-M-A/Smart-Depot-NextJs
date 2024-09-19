@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-interface IWishlist extends Document {
+interface IWishlist {
     userId?: Types.ObjectId;
     products: {
         productId: Types.ObjectId;

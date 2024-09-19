@@ -1,6 +1,6 @@
 import { Types } from "mongoose";
 
-interface IAddress extends Document {
+interface IAddress {
     userId: Types.ObjectId;
     addressType: string; // 'shipping', 'billing', or 'both'
     recipientName: string;

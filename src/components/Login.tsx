@@ -16,11 +16,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { loginUser } from '@/redux/slices/user.slice'
-import { AppDispatch } from '@/redux/store'
+import { AppDispatch, RootState } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 
 const FormSchema = z.object({
@@ -41,6 +41,7 @@ const Login: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const [isChecked, setIsChecked] = useState<boolean>(false);
+    const { status, error }: { status: string, error: string | null } = useSelector((state: RootState) => state.user);
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -53,7 +54,13 @@ const Login: React.FC = () => {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             await dispatch(loginUser(data)).unwrap();
-            router.push('/')
+            if (status === "succeeded") {
+                
+                router.push('/');
+            }
+            if (status === "failed") {
+
+            }
         } catch (error) {
             console.error("Login failed:", error);
         }

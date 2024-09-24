@@ -55,20 +55,14 @@ const Login: React.FC = () => {
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
             await dispatch(loginUser(data)).unwrap();
-            if (status === "succeeded") {
-                toast("Login Successful");
-                router.push('/');
-            } else if (status === "loading") {
-                toast("Wait...");
-            } else {
-                toast("Login Failed");
-            }
+            toast("Login Successful");
+            router.push('/products');
         } catch (error) {
             toast("Login Failed");
             console.error("Login failed:", error);
         }
-
     }
+    
 
     return (
         <div className='py-5'>

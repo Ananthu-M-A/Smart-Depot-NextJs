@@ -22,7 +22,7 @@ export const loginUser = createAsyncThunk<IUser, { email: string, password: stri
                 const errorData = await response.json();
                 return rejectWithValue(errorData);
             }
-            const user: IUser = await response.json();            
+            const user: IUser = await response.json();
             return user;
         } catch (error) {
             return rejectWithValue((error as Error).message);
@@ -49,7 +49,7 @@ const userSlice = createSlice({
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'failed';
-                // state.error = action.error.message;
+                state.error = action.error.message as unknown as null;
             })
             .addCase(loginUser.pending, (state) => {
                 state.status = 'loading';
@@ -60,9 +60,9 @@ const userSlice = createSlice({
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = 'failed';
-                // state.error = action.error.message;
-            })
+                state.error = action.error.message as unknown as null;
+            });
     },
-});
+}); 
 
 export default userSlice.reducer;

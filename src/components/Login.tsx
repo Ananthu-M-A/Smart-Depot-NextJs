@@ -22,6 +22,7 @@ import { useState } from "react"
 import { loginUser } from '@/redux/slices/user.slice'
 import { AppDispatch, RootState } from '@/redux/store'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const FormSchema = z.object({
     email: z
@@ -55,13 +56,15 @@ const Login: React.FC = () => {
         try {
             await dispatch(loginUser(data)).unwrap();
             if (status === "succeeded") {
-                
+                toast("Login Successful");
                 router.push('/');
-            }
-            if (status === "failed") {
-
+            } else if (status === "loading") {
+                toast("Wait...");
+            } else {
+                toast("Login Failed");
             }
         } catch (error) {
+            toast("Login Failed");
             console.error("Login failed:", error);
         }
 

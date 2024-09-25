@@ -28,7 +28,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProductDetails.rejected, (state, action) => {
                 state.status = 'failed';
-                // state.error = action.error.message;
+                state.error = action.error.message as unknown as null;
             });
     },
 });

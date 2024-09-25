@@ -23,10 +23,10 @@ const ProductDetails = () => {
   const { product, status, error }: { product: IProduct, status: string, error: string | null } = useSelector((state: RootState) => state.product);
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (productId) {
       dispatch(fetchProductDetails(productId as string));
     }
-  }, [dispatch, status, productId]);
+  }, [dispatch, productId]);
 
   return (
     <>

@@ -30,7 +30,7 @@
     "embla-carousel-autoplay": "^8.2.0",
     "embla-carousel-react": "^8.2.0",
     "input-otp": "^1.2.4",
-    "jsonwebtoken": "^9.0.2",
+    "jose": "^5.9.3",
     "lucide-react": "^0.436.0",
     "mongoose": "^8.6.1",
     "next": "^14.2.13",

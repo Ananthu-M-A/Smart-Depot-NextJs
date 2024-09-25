@@ -1,7 +1,7 @@
 import connectDb from "@/lib/mongoose";
 import User from "@/models/user.model";
 import { NextResponse } from "next/server";
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import bcrypt from 'bcrypt';
 
 export async function POST(req: Request) {
@@ -26,14 +26,23 @@ export async function POST(req: Request) {
             );
         }
 
-        const token = jwt.sign({ user }, process.env.JWT_SECRET!, {
-            expiresIn: "1h",
+        const secret = new TextEncoder().encode(process.env.JWT_SECRET as string);
+        const token = await new SignJWT({ user })
+            .setProtectedHeader({ alg: 'HS256' })
+            .setIssuedAt()
+            .setExpirationTime('1h')
+            .sign(secret);
+
+        const response = NextResponse.json({ message: "Login Successful" }, { status: 200 });
+
+        response.cookies.set('session', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60,
+            path: '/',
         });
 
-        return NextResponse.json(
-            { message: "Login Successful", token },
-            { status: 200 }
-        );
+        return response;
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

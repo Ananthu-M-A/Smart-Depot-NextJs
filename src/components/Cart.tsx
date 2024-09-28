@@ -10,14 +10,15 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import demoImage from '../../public/accessory1.jpg'
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/redux/store";
-import { fetchCartItems } from "@/redux/slices/cartItems.slice";
+import { AppDispatch } from "@/redux/store";
+import { fetchCartItems, selectCartItems, selectCartItemsStatus } from "@/redux/slices/cartItems.slice";
 import Loading from "@/app/(user)/cart/[userId]/loading";
 
 const Cart: React.FC = () => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { cartItems, status, error } = useSelector((state: RootState) => state.cartItems);
+    const cartItems = useSelector(selectCartItems);
+    const status = useSelector(selectCartItemsStatus);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -59,9 +60,9 @@ const Cart: React.FC = () => {
                                     </CardContent>
                                     <CardContent className="w-1/4 px-1">
                                         <CardHeader className="p-5">
-                                            <CardTitle className='text-xl cursor-pointer'>{cartItems}
+                                            <CardTitle className='text-xl cursor-pointer'>{"cartItems"}
                                                 <CardDescription className='font-bold'>
-                                                    {cartItems}
+                                                    {"cartItems"}
                                                 </CardDescription>
                                             </CardTitle>
                                             <CardDescription className="">
@@ -80,6 +81,7 @@ const Cart: React.FC = () => {
                                                 alt={"contain"}
                                                 width={125}
                                                 height={125}
+                                                loading="lazy"
                                             />
                                         </CardContent>
                                     </CardContent>
@@ -88,7 +90,7 @@ const Cart: React.FC = () => {
                                             <Input type="number" min={1} max={10} placeholder="1" className="w-20 h-10 text-center text-sm" />
                                         </CardTitle>
                                         <CardTitle className='p-8'>
-                                            <p className="text-sm">₹{cartItems} </p>
+                                            <p className="text-sm">₹{"cartItems"} </p>
                                         </CardTitle>
                                     </CardContent>
                                 </CardContent>
@@ -102,7 +104,7 @@ const Cart: React.FC = () => {
                             <Card className="w-1/4 text-center shadow-lg">
                                 <CardHeader>
                                     <CardTitle className="text-lg font-semibold">
-                                        Subtotal(1 item): ₹{cartItems}
+                                        Subtotal(1 item): ₹{"cartItems"}
                                     </CardTitle>
                                     <CardFooter className="flex gap-4 justify-center">
                                         <Button className='text-sm font-semibold bg-midnight text-lightGray my-4'>
@@ -128,7 +130,7 @@ const Cart: React.FC = () => {
                         </>}
                 </div >
                 : (status === 'failed')
-                    ? <p>{error}</p>
+                    ? <p>ERROR</p>
                     : <></>
         }
         <Scrollers />

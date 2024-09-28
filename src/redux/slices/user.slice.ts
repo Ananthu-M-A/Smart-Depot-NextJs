@@ -1,5 +1,6 @@
 import IUser from '@/interfaces/user.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export const fetchUser = createAsyncThunk<IUser, string>('user/fetchUser',
     async (userId) => {
@@ -63,6 +64,9 @@ const userSlice = createSlice({
                 state.error = action.error.message as unknown as null;
             });
     },
-}); 
+});
+
+export const selectUser = (state: RootState) => state.user.user;
+export const selectUserStatus = (state: RootState) => state.user.status;
 
 export default userSlice.reducer;

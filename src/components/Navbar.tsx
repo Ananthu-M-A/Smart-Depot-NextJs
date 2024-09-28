@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             <SelectValue>
               <div className='flex gap-1 text-lightGray'>
                 <h1 className='text-md font-bold opacity-90'>{selectedLanguage}</h1>
-                <Image src={'/language.png'} width={20} height={20} alt={'language-icon'} />
+                <Image src={'/language.png'} width={20} height={20} alt={'language-icon'} loading='lazy'/>
               </div>
             </SelectValue>
           </SelectTrigger>
@@ -64,20 +64,20 @@ const Navbar: React.FC = () => {
         </Select>
         <Input placeholder='Search...' />
         <Button className='bg-lightGray hover:bg-gray-300'>
-          <Image src={'/search.png'} width={25} height={25} alt="search-icon" />
+          <Image src={'/search.png'} width={25} height={25} alt="search-icon" loading='lazy' />
         </Button>
       </div>
       <Link href={`/account/login-security/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Hello,</p>
-          <Image src={'/account.png'} width={25} height={20} alt="account-icon" />
+          <Image src={'/account.png'} width={25} height={20} alt="account-icon" loading='lazy' />
         </div>
         <h1 className='text-lightGray font-semibold text-md'>Ananthu</h1>
       </Link>
       <Link href={`/account/addresses/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Deliver to Ananthu</p>
-          <Image src={'/location.png'} width={25} height={10} alt="location-icon" />
+          <Image src={'/location.png'} width={25} height={10} alt="location-icon" loading='lazy' />
         </div>
         <h1 className='text-lightGray font-semibold text-sm mt-1'>Chemanchery, 673304</h1>
       </Link>
@@ -85,14 +85,14 @@ const Navbar: React.FC = () => {
         <p className='text-lightGray font-light text-xs mt-1'>Returns &</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-2'>Orders</h1>
-          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon" />
+          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon" loading='lazy' />
         </div>
       </Link>
       <Link href={`/cart/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-thin text-xs mt-1'>Your</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-1'>Cart</h1>
-          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon" />
+          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon" loading='lazy' />
         </div>
       </Link>
     </div>

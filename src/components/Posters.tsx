@@ -28,6 +28,7 @@ const Posters: React.FC = () => {
                                     layout="fill"
                                     objectFit="cover"
                                     alt={`Poster Image ${index + 1}`}
+                                    loading='lazy'
                                 />
                             </div>
                         ))}

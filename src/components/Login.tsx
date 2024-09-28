@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { loginUser } from '@/redux/slices/user.slice'
-import { AppDispatch, RootState } from '@/redux/store'
+import { AppDispatch } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
@@ -42,7 +42,6 @@ const Login: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     const [isChecked, setIsChecked] = useState<boolean>(false);
-    const { status, error }: { status: string, error: string | null } = useSelector((state: RootState) => state.user);
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),

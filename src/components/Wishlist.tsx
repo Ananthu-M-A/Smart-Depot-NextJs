@@ -27,7 +27,7 @@ const Wishlist = () => {
                                     <CardHeader className='overflow-hidden'>
                                         <CardDescription className="flex justify-left gap-1">
                                             {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
-                                                <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
+                                                <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"} loading='lazy'
                                                     className="hover:border-2 hover:border-transparent cursor-pointer" />
                                             ))}
                                         </CardDescription>
@@ -51,6 +51,7 @@ const Wishlist = () => {
                                             alt={`Product Image ${1}`}
                                             width={200}
                                             height={150}
+                                            loading='lazy'
                                         />
                                     </CardContent>
                                     <CardFooter className='grid'>
@@ -61,6 +62,7 @@ const Wishlist = () => {
                                                     alt={`Product Image ${1}`}
                                                     width={20}
                                                     height={20}
+                                                    loading='lazy'
                                                 />
                                             </Button>
                                             <Button className="w-10 bg-lightGray hover:bg-gray-300 border text-xl text-gray-900">

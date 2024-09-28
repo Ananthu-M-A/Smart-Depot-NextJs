@@ -8,13 +8,14 @@ import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '@/redux/store'
+import { AppDispatch } from '@/redux/store'
 import IAddress from '@/interfaces/address.interface'
-import { fetchAddresses } from '@/redux/slices/addresses.slice'
+import { fetchAddresses, selectAddresses, selectAddressesStatus } from '@/redux/slices/addresses.slice'
 
 const Addresses: React.FC = () => {
 
-    const { status, addresses, error } = useSelector((state: RootState) => state.addresses);
+    const addresses = useSelector(selectAddresses);
+    const status = useSelector(selectAddressesStatus);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
@@ -96,7 +97,7 @@ const Addresses: React.FC = () => {
                         }
                     </Card >
                     : (status === 'failed')
-                        ? <p>{error}</p>
+                        ? <p>ERROR</p>
                         : <></>
             }
         </>

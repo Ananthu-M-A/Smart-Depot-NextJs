@@ -7,7 +7,7 @@ import Image from "next/legacy/image"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/redux/store'
-import { fetchProducts } from '@/redux/slices/products.slice'
+import { fetchProducts, selectAllProducts, selectProductsStatus } from '@/redux/slices/products.slice'
 import IProduct from '@/interfaces/product.interface'
 import demoImage from '../../public/accessory1.jpg'
 import Loading from '@/app/loading'
@@ -16,8 +16,9 @@ import Link from 'next/link'
 
 const Scrollers: React.FC = () => {
 
-    const { status, products, error } = useSelector((state: RootState) => state.products);
     const dispatch = useDispatch<AppDispatch>();
+    const products = useSelector(selectAllProducts);
+    const status = useSelector(selectProductsStatus);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -61,6 +62,7 @@ const Scrollers: React.FC = () => {
                                                     alt={`Product Image ${index + 1}`}
                                                     width={200}
                                                     height={150}
+                                                    loading='lazy'
                                                 />
                                             </CardContent>
                                             <CardFooter className='grid'>
@@ -79,7 +81,7 @@ const Scrollers: React.FC = () => {
                         </ScrollArea>
                     </>)
                     : (status === 'failed')
-                        ? <p>{error}</p>
+                        ? <p>ERROR</p>
                         : <></>
             }
         </>

@@ -9,13 +9,14 @@ import demoImage from '../../public/accessory1.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/redux/store'
 import { useEffect } from 'react'
-import { fetchOrders } from '@/redux/slices/orders.slice'
+import { fetchOrders, selectOrders, selectOrdersStatus } from '@/redux/slices/orders.slice'
 import IOrder from '@/interfaces/order.interface'
 
 const Orders: React.FC = () => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { orders, status, error } = useSelector((state: RootState) => state.orders);
+    const orders = useSelector(selectOrders);
+    const status = useSelector(selectOrdersStatus);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -66,6 +67,7 @@ const Orders: React.FC = () => {
                                                                                 alt={order.paymentMethod}
                                                                                 width={120}
                                                                                 height={100}
+                                                                                loading='lazy'
                                                                             />
                                                                         </CardContent>
                                                                     </CardContent>
@@ -103,7 +105,7 @@ const Orders: React.FC = () => {
                         }
                     </Card >
                     : (status === 'failed')
-                        ? <p>{error}</p>
+                        ? <p>ERROR</p>
                         : <></>
             }
         </>);

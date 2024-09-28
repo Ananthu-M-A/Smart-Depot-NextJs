@@ -6,9 +6,9 @@ import Image from "next/legacy/image";
 import { Button } from './ui/button';
 import Pagination from './Pagination';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '@/redux/slices/products.slice';
+import { fetchProducts, selectAllProducts, selectProductsStatus } from '@/redux/slices/products.slice';
 import IProduct, { } from '@/interfaces/product.interface';
-import { AppDispatch, RootState } from '@/redux/store';
+import { AppDispatch } from '@/redux/store';
 import demoImage from '../../public/accessory1.jpg';
 import Loading from '@/app/loading';
 import Link from 'next/link';
@@ -16,7 +16,8 @@ import Link from 'next/link';
 const ProductsList: React.FC = () => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { products, status, error } = useSelector((state: RootState) => state.products);
+    const products = useSelector(selectAllProducts);    
+    const status = useSelector(selectProductsStatus);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -39,14 +40,14 @@ const ProductsList: React.FC = () => {
                                         objectFit="cover"
                                         alt={`Product Image ${index + 1}`}
                                         width={300} height={300}
-                                        className=''
+                                        loading='lazy'
                                     />
                                 </CardContent>
                                 <CardContent className="w-1/2 p-1 border-l">
                                     <CardHeader>
                                         <CardDescription className="flex justify-left gap-1">
                                             {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
-                                                <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
+                                                <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"} loading='lazy'
                                                     className="hover:border-2 hover:border-transparent cursor-pointer" />
                                             ))}
                                         </CardDescription>
@@ -88,7 +89,7 @@ const ProductsList: React.FC = () => {
                         </div>
                     </div>
                     : (status === 'failed')
-                        ? <p>{error}</p>
+                        ? <p>ERROR</p>
                         : <></>
             }
         </>

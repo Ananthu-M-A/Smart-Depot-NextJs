@@ -33,6 +33,7 @@ const Banners: React.FC = () => {
                     objectFit="cover"
                     alt={`Banner Image ${index + 1}`}
                     className="w-full"
+                    loading="lazy"
                   />
                 </CardContent>
               </Card>

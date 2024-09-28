@@ -6,16 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
-import { fetchUser } from '@/redux/slices/user.slice';
+import { fetchUser, selectUser, selectUserStatus } from '@/redux/slices/user.slice';
 import IUser from '@/interfaces/user.interface';
 import { useParams } from 'next/navigation';
 import Loading from '@/app/(user)/account/loading';
 
 const LoginSecurity: React.FC = () => {
 
-    const { status, user, error }: { user: IUser, status: string, error: string | null } = useSelector((state: RootState) => state.user);
     const { userId } = useParams();
     const dispatch = useDispatch<AppDispatch>();   
+    const user = useSelector(selectUser);
+    const status = useSelector(selectUserStatus);
 
     useEffect(() => {
         if (status === 'idle') {
@@ -49,7 +50,7 @@ const LoginSecurity: React.FC = () => {
                         </CardContent>
                     </Card >
                     : (status === 'failed')
-                        ? <p>{error}</p>
+                        ? <p>ERROR</p>
                         : <></>
             }
         </>

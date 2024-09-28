@@ -9,22 +9,23 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
-import { fetchProductDetails } from '@/redux/slices/product.slice';
 import Loading from '@/app/loading';
 import demoImage from '../../public/accessory1.jpg';
 import IProduct from '@/interfaces/product.interface';
 import { useParams } from 'next/navigation';
+import { fetchProducts, selectProductById, selectProductsStatus } from '@/redux/slices/products.slice';
 
 
 const ProductDetails = () => {
 
-  const dispatch = useDispatch<AppDispatch>();
   const { productId } = useParams();
-  const { product, status, error }: { product: IProduct, status: string, error: string | null } = useSelector((state: RootState) => state.product);
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector((state: RootState) => selectProductById(state, productId as string));
+  const status = useSelector(selectProductsStatus);
 
   useEffect(() => {
     if (productId) {
-      dispatch(fetchProductDetails(productId as string));
+      dispatch(fetchProducts());
     }
   }, [dispatch, productId]);
 
@@ -39,15 +40,14 @@ const ProductDetails = () => {
                 src={demoImage}
                 objectFit="cover"
                 alt={product.name}
-                className=''
+                loading='lazy'
               />
             </CardContent>
             <CardContent className="w-1/2 p-1 cursor-pointer border shadow-lg rounded-l">
               <CardHeader>
                 <CardDescription className="flex justify-left gap-1">
                   {Array.from([1, 2, 3, 4, 5]).map((_, index) => (
-                    <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"}
-                      className="hover:border-2 hover:border-transparent cursor-pointer" />
+                    <Image key={index} src={"/star.png"} width={15} height={15} alt={"Star Image"} loading='lazy' className="hover:border-2 hover:border-transparent cursor-pointer" />
                   ))}
                 </CardDescription>
                 <CardTitle className='text-xl cursor-pointer'>{product.name}
@@ -101,7 +101,7 @@ const ProductDetails = () => {
                 Free Delivery
                 <CardDescription className='text-black font-semibold flex'>
                   <Link href={"/"}>Chemanchery, 673304</Link>
-                  <Image src={'/location.png'} width={20} height={10} alt="location-icon" />
+                  <Image src={'/location.png'} width={20} height={10} alt="location-icon" loading='lazy' />
                 </CardDescription>
               </CardDescription>
               <CardDescription className='px-6 mb-4 text-xl font-medium'>
@@ -133,7 +133,7 @@ const ProductDetails = () => {
             </CardContent>
           </Card>
           : (status === 'failed')
-            ? <p>{error}</p>
+            ? <p>ERROR</p>
             : <></>
       }
       <Scrollers />

@@ -1,4 +1,6 @@
+import ICartItem from '@/interfaces/cart.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export const fetchCartItems = createAsyncThunk('cart-items/fetchCartItems', async () => {
   const response = await fetch('/api/cart-items');
@@ -9,7 +11,7 @@ export const fetchCartItems = createAsyncThunk('cart-items/fetchCartItems', asyn
 const cartItemsSlice = createSlice({
   name: 'cartItems',
   initialState: {
-    cartItems: [],
+    cartItems: [] as ICartItem[],
     status: 'idle',
     error: null,
   },
@@ -25,9 +27,12 @@ const cartItemsSlice = createSlice({
       })
       .addCase(fetchCartItems.rejected, (state, action) => {
         state.status = 'failed';
-        // state.error = action.error.message;
+        state.error = action.error.message as unknown as null;
       });
   },
 });
+
+export const selectCartItems = (state: RootState) => state.cartItems.cartItems;
+export const selectCartItemsStatus = (state: RootState) => state.cartItems.status;
 
 export default cartItemsSlice.reducer;

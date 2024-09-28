@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import IOrder from '@/interfaces/order.interface';
 
 export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   const response = await fetch('/api/orders');
@@ -9,7 +11,7 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
 const ordersSlice = createSlice({
   name: 'orders',
   initialState: {
-    orders: [],
+    orders: [] as IOrder[],
     status: 'idle',
     error: null,
   },
@@ -25,9 +27,12 @@ const ordersSlice = createSlice({
       })
       .addCase(fetchOrders.rejected, (state, action) => {
         state.status = 'failed';
-        // state.error = action.error.message;
+        state.error = action.error.message as unknown as null;
       });
   },
 });
+
+export const selectOrders = (state: RootState) => state.orders.orders;
+export const selectOrdersStatus = (state: RootState) => state.orders.status;
 
 export default ordersSlice.reducer;

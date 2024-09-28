@@ -27,7 +27,6 @@ interface ISpec {
 }
 
 interface IProduct {
-    id: any;
     _id: string;
     name: string;
     brand: string;

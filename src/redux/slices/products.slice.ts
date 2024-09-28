@@ -1,6 +1,8 @@
+import IProduct from '@/interfaces/product.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-export const fetchProducts = createAsyncThunk('products/fetchProducts',
+export const fetchProducts = createAsyncThunk<IProduct[]>('products/fetchProducts',
   async () => {
     const response = await fetch('/api/products');
     const data = await response.json();
@@ -10,7 +12,8 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts',
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    products: [],
+    byId: {} as Record<string, IProduct>,
+    allIds: [] as string[],
     status: 'idle',
     error: null,
   },
@@ -22,13 +25,22 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.products = action.payload;
+        action.payload.forEach((product) => {
+          state.byId[product._id] = product;
+          if (!state.allIds.includes(product._id)) {
+            state.allIds.push(product._id);
+          }
+        });
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';
-        // state.error = action.error.message;
+        state.error = action.error.message as unknown as null;
       });
   },
 });
+
+export const selectAllProducts = (state: RootState) => state.products.allIds.map(id => state.products.byId[id]);
+export const selectProductById = (state: RootState, productId: string) => state.products.byId[productId];
+export const selectProductsStatus = (state: RootState) => state.products.status;
 
 export default productsSlice.reducer;

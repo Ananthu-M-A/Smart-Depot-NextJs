@@ -1,4 +1,6 @@
+import IAddress from '@/interfaces/address.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export const fetchAddresses = createAsyncThunk('addresses/fetchAddresses', async () => {
   const response = await fetch('/api/addresses');
@@ -9,7 +11,7 @@ export const fetchAddresses = createAsyncThunk('addresses/fetchAddresses', async
 const addressesSlice = createSlice({
   name: 'addresses',
   initialState: {
-    addresses: [],
+    addresses: [] as IAddress[],
     status: 'idle',
     error: null,
   },
@@ -25,9 +27,12 @@ const addressesSlice = createSlice({
       })
       .addCase(fetchAddresses.rejected, (state, action) => {
         state.status = 'failed';
-        // state.error = action.error.message;
+        state.error = action.error.message as unknown as null;
       });
   },
 });
+
+export const selectAddresses = (state: RootState) => state.addresses.addresses;
+export const selectAddressesStatus = (state: RootState) => state.addresses.status;
 
 export default addressesSlice.reducer;

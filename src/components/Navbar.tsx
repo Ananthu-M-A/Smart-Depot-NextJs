@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input } from './ui/input'
 import {
   Select,
@@ -10,15 +10,32 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Button } from './ui/button'
-import Image from "next/legacy/image"
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { Languages, MapPin, Search, ShoppingBag, ShoppingCart, User } from 'lucide-react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUser, selectUser, selectUserStatus } from '@/redux/slices/user.slice'
+import { AppDispatch } from '@/redux/store'
 
 const Navbar: React.FC = () => {
+  const LanguageIcon = React.memo(() => <Languages color='black' width={20} />);
+  const SearchIcon = React.memo(() => <Search color='black' width={20} />);
+  const LocationIcon = React.memo(() => <MapPin width={20} />);
+  const OrdersIcon = React.memo(() => <ShoppingBag width={25} className='mt-1' />);
+  const CartIcon = React.memo(() => <ShoppingCart width={25} className='mt-1' />);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector(selectUser);
+  const userStatus = useSelector(selectUserStatus);
+
   const [isOpenLanguage, setIsOpenLanguage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
-  const params = useParams();
+
+  useEffect(() => {
+    if (userStatus === 'idle') {
+      dispatch(fetchUser("66eaffe53bf342426229cf29"));
+    }
+  }, [userStatus, dispatch])
 
   return (
     <div className='bg-midnight p-4 flex justify-between fixed w-full z-50'>
@@ -35,7 +52,7 @@ const Navbar: React.FC = () => {
             <SelectValue>
               <div className='flex gap-1 text-lightGray'>
                 <h1 className='text-md font-bold opacity-90'>{selectedLanguage}</h1>
-                <Image src={'/language.png'} width={20} height={20} alt={'language-icon'} loading='lazy'/>
+                <LanguageIcon />
               </div>
             </SelectValue>
           </SelectTrigger>
@@ -64,35 +81,35 @@ const Navbar: React.FC = () => {
         </Select>
         <Input placeholder='Search...' />
         <Button className='bg-lightGray hover:bg-gray-300'>
-          <Image src={'/search.png'} width={25} height={25} alt="search-icon" loading='lazy' />
+          <SearchIcon />
         </Button>
       </div>
-      <Link href={`/account/login-security/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      <Link href={`/account/login-security/${user._id}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Hello,</p>
-          <Image src={'/account.png'} width={25} height={20} alt="account-icon" loading='lazy' />
+          <User width={20} />
         </div>
         <h1 className='text-lightGray font-semibold text-md'>Ananthu</h1>
       </Link>
-      <Link href={`/account/addresses/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
+      <Link href={`/account/addresses/${user._id}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white hover:cursor-pointer'>
         <div className='flex gap-1'>
           <p className='text-lightGray font-thin text-xs mt-1'>Deliver to Ananthu</p>
-          <Image src={'/location.png'} width={25} height={10} alt="location-icon" loading='lazy' />
+          <LocationIcon />
         </div>
         <h1 className='text-lightGray font-semibold text-sm mt-1'>Chemanchery, 673304</h1>
       </Link>
-      <Link href={`/account/orders/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      <Link href={`/account/orders/${user._id}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-light text-xs mt-1'>Returns &</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-2'>Orders</h1>
-          <Image src={'/orders.png'} width={30} height={20} alt="orders-icon" loading='lazy' />
+          <OrdersIcon />
         </div>
       </Link>
-      <Link href={`/cart/${params?.userId || 1}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
+      <Link href={`/cart/${user._id}`} className='p-1 grid border border-gray-900 rounded-lg hover:border-white'>
         <p className='text-lightGray font-thin text-xs mt-1'>Your</p>
         <div className='flex gap-1'>
           <h1 className='text-lightGray font-semibold text-sm mt-1'>Cart</h1>
-          <Image src={'/cart.png'} width={25} height={20} alt="cart-icon" loading='lazy' />
+          <CartIcon />
         </div>
       </Link>
     </div>

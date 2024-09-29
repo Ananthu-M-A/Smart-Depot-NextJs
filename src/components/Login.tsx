@@ -53,7 +53,9 @@ const Login: React.FC = () => {
 
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         try {
-            await dispatch(loginUser(data)).unwrap();
+            const response = await dispatch(loginUser(data)).unwrap();
+            console.log(response);
+            
             toast("Login Successful");
             router.push('/products');
         } catch (error) {

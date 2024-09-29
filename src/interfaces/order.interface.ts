@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
 interface IOrder {
+    _id: string;
     userId: Types.ObjectId;
     orderItems: {
         productId: Types.ObjectId;

@@ -2,8 +2,8 @@ import IAddress from '@/interfaces/address.interface';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-export const fetchAddresses = createAsyncThunk('addresses/fetchAddresses', async () => {
-  const response = await fetch('/api/addresses');
+export const fetchAddresses = createAsyncThunk<IAddress[], string>('addresses/fetchAddresses', async (userId) => {
+  const response = await fetch(`/api/addresses/${userId}`);
   const data = await response.json();
   return data;
 });
@@ -11,7 +11,8 @@ export const fetchAddresses = createAsyncThunk('addresses/fetchAddresses', async
 const addressesSlice = createSlice({
   name: 'addresses',
   initialState: {
-    addresses: [] as IAddress[],
+    byId: {} as Record<string, IAddress>,
+    allIds: [] as string[],
     status: 'idle',
     error: null,
   },
@@ -23,7 +24,12 @@ const addressesSlice = createSlice({
       })
       .addCase(fetchAddresses.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.addresses = action.payload;
+        action.payload.forEach((address) => {
+          state.byId[address._id] = address;
+          if (!state.allIds.includes(address._id)) {
+            state.allIds.push(address._id);
+          }
+        });
       })
       .addCase(fetchAddresses.rejected, (state, action) => {
         state.status = 'failed';
@@ -32,7 +38,8 @@ const addressesSlice = createSlice({
   },
 });
 
-export const selectAddresses = (state: RootState) => state.addresses.addresses;
+export const selectAllAddresses = (state: RootState) => state.addresses.allIds.map(id => state.addresses.byId[id]);
+export const selectAddressById = (state: RootState, addressId: string) => state.addresses.byId[addressId];
 export const selectAddressesStatus = (state: RootState) => state.addresses.status;
 
 export default addressesSlice.reducer;

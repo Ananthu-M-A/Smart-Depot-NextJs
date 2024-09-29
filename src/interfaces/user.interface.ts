@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
 interface IUser {
+    _id: string;
     name?: string;
     email: string;
     mobile?: string;

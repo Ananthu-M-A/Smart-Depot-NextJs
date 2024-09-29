@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 
 interface IAddress {
+    _id: string;
     userId: Types.ObjectId;
     addressType: string; // 'shipping', 'billing', or 'both'
     recipientName: string;

@@ -10,25 +10,27 @@ import { Button } from './ui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch } from '@/redux/store'
 import IAddress from '@/interfaces/address.interface'
-import { fetchAddresses, selectAddresses, selectAddressesStatus } from '@/redux/slices/addresses.slice'
+import { fetchAddresses, selectAddressesStatus, selectAllAddresses } from '@/redux/slices/addresses.slice'
+import { useParams } from 'next/navigation'
 
 const Addresses: React.FC = () => {
 
-    const addresses = useSelector(selectAddresses);
-    const status = useSelector(selectAddressesStatus);
+    const params = useParams();
+    const addresses = useSelector(selectAllAddresses);
+    const addressesStatus = useSelector(selectAddressesStatus);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        if (status === 'idle') {
-            dispatch(fetchAddresses());
+        if (addressesStatus === 'idle') {
+            dispatch(fetchAddresses(params.userId as string));
         }
-    }, [dispatch, status]);
+    }, [dispatch, addressesStatus]);
 
     return (
         <>
-            {(status === 'loading')
+            {(addressesStatus === 'loading')
                 ? <></>
-                : (status === 'succeeded')
+                : (addressesStatus === 'succeeded')
                     ? < Card className="flex gap-10 border-3 p-5">
                         {(addresses.length !== 0)
                             ? addresses.map((address: IAddress, index: number) => (
@@ -44,32 +46,32 @@ const Addresses: React.FC = () => {
                                                             <CardContent className="w-full border rounded-lg p-5">
                                                                 <CardContent>
                                                                     <Label className="text-sm font-semibold p-3">Full Name:</Label>
-                                                                    <Input value={`Ananthu`} />
+                                                                    <Input value={address.recipientName} />
                                                                 </CardContent>
                                                                 <CardContent>
                                                                     <Label className="text-sm font-semibold p-3">Mobile:</Label>
-                                                                    <Input value={`8000000001`} />
+                                                                    <Input value={address.recipientMobile} />
                                                                 </CardContent>
                                                                 <CardContent>
                                                                     <Label className="text-sm font-semibold p-3">Pincode:</Label>
-                                                                    <Input value={`666666`} />
+                                                                    <Input value={address.zip} />
                                                                 </CardContent>
                                                                 <CardContent>
                                                                     <Label className="text-sm font-semibold p-3">Landmark:</Label>
-                                                                    <Input value={`VIP Road`} />
+                                                                    <Input value={address.street} />
                                                                 </CardContent>
                                                                 <CardContent>
                                                                     <Label className="text-sm font-semibold p-3">Address:</Label>
-                                                                    <Input value={`Sujama House, Edakkad`} />
+                                                                    <Input value={address.house} />
                                                                 </CardContent>
                                                                 <CardContent className="flex justify-between">
                                                                     <CardDescription>
                                                                         <Label className="text-sm font-semibold p-3 text-black">City:</Label>
-                                                                        <Input value={`Kozhikode`} />
+                                                                        <Input value={address.city} />
                                                                     </CardDescription>
                                                                     <CardDescription>
                                                                         <Label className="text-sm font-semibold p-3 text-black">State:</Label>
-                                                                        <Input value={`Kerala`} />
+                                                                        <Input value={address.state} />
                                                                     </CardDescription>
                                                                 </CardContent>
                                                             </CardContent>
@@ -96,7 +98,7 @@ const Addresses: React.FC = () => {
                             </CardDescription>
                         }
                     </Card >
-                    : (status === 'failed')
+                    : (addressesStatus === 'failed')
                         ? <p>ERROR</p>
                         : <></>
             }

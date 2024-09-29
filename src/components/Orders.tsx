@@ -9,18 +9,20 @@ import demoImage from '../../public/accessory1.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/redux/store'
 import { useEffect } from 'react'
-import { fetchOrders, selectOrders, selectOrdersStatus } from '@/redux/slices/orders.slice'
+import { fetchOrders, selectAllOrders, selectOrdersStatus } from '@/redux/slices/orders.slice'
 import IOrder from '@/interfaces/order.interface'
+import { useParams } from 'next/navigation'
 
 const Orders: React.FC = () => {
 
+    const params = useParams();
     const dispatch = useDispatch<AppDispatch>();
-    const orders = useSelector(selectOrders);
+    const orders = useSelector(selectAllOrders);
     const status = useSelector(selectOrdersStatus);
 
     useEffect(() => {
         if (status === 'idle') {
-            dispatch(fetchOrders());
+            dispatch(fetchOrders(params.userId as string));
         }
     }, [dispatch, status]);
 

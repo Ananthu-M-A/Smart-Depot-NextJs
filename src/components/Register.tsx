@@ -79,9 +79,7 @@ const Register: React.FC = () => {
                                 name="fullname"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-sm font-semibold p-1">
-                                            Name :
-                                        </FormLabel>
+                                        <FormLabel className="text-sm font-semibold p-1">Name :</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Eg:- Ananthu M A" {...field} type="text" />
                                         </FormControl>
@@ -94,9 +92,7 @@ const Register: React.FC = () => {
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-sm font-semibold p-1">
-                                            Email :
-                                        </FormLabel>
+                                        <FormLabel className="text-sm font-semibold p-1">Email :</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Eg:- ananthu@gmail.com" {...field} type="email" />
                                         </FormControl>
@@ -109,9 +105,7 @@ const Register: React.FC = () => {
                                 name="mobile"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-sm font-semibold p-1">
-                                            Mobile :
-                                        </FormLabel>
+                                        <FormLabel className="text-sm font-semibold p-1">Mobile :</FormLabel>
                                         <FormControl>
                                             <Input placeholder="Eg:- 9876543210" {...field} type="tel" />
                                         </FormControl>
@@ -124,9 +118,7 @@ const Register: React.FC = () => {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-sm font-semibold p-1">
-                                            Password :
-                                        </FormLabel>
+                                        <FormLabel className="text-sm font-semibold p-1">Password :</FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder="Eg:- P@55word"
@@ -158,6 +150,7 @@ const Register: React.FC = () => {
                         </CardContent>
                     </form>
                 </Form>
+
                 {isDrawerOpen && (
                     <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
                         <DrawerContent className="w-1/4 mx-auto">
@@ -188,6 +181,7 @@ const Register: React.FC = () => {
                         </DrawerContent>
                     </Drawer>
                 )}
+
                 <CardContent className="text-center">
                     <CardDescription>
                         <Link href="/login">Already have an account ?</Link>
